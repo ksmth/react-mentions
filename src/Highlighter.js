@@ -43,7 +43,7 @@ class Highlighter extends Component {
   constructor() {
     super(...arguments)
 
-    this.state = { lastPosition: {} }
+    this.lastPosition = {}
   }
 
   componentDidMount() {
@@ -64,15 +64,13 @@ class Highlighter extends Component {
       top: this.caretRef.offsetTop,
     }
 
-    let { lastPosition } = this.state
+    let { lastPosition } = this
 
     if (isObjectEqual(lastPosition, position)) {
       return
     }
 
-    this.setState({
-      lastPosition: position,
-    })
+    this.lastPosition = position
 
     this.props.onCaretPositionChange(position)
   }
